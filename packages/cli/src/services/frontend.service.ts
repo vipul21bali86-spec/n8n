@@ -279,6 +279,7 @@ export class FrontendService {
 			},
 			activeModules: this.moduleRegistry.getActiveModules(),
 			envFeatureFlags: this.collectEnvFeatureFlags(),
+			safeMode: this.instanceSettings.isSafeMode,
 		};
 	}
 
@@ -426,6 +427,9 @@ export class FrontendService {
 
 		// Refresh environment feature flags
 		this.settings.envFeatureFlags = this.collectEnvFeatureFlags();
+
+		// Refresh safe mode status
+		this.settings.safeMode = this.instanceSettings.isSafeMode;
 
 		return this.settings;
 	}
