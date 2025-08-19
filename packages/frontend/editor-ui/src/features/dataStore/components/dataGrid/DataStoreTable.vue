@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, useCssModule } from 'vue';
 import orderBy from 'lodash/orderBy';
 import type {
 	DataStore,
@@ -175,7 +175,7 @@ const createColumnDef = (col: DataStoreColumn, extraProps: Partial<ColDef> = {})
 			return params.data?.[col.name];
 		},
 		headerComponent: ColumnHeader,
-		headerComponentParams: { onDelete: onDeleteColumn },
+		headerComponentParams: { onDelete: onDeleteColumn, $style: useCssModule() },
 		...extraProps,
 		cellDataType: dataStoreTypes.mapToAGCellType(col.type),
 	};
@@ -354,5 +354,9 @@ onMounted(() => {
 			width: var(--spacing-m);
 		}
 	}
+}
+
+.column-header-icon {
+	color: var(--color-danger) !important;
 }
 </style>

@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import type { IHeaderParams } from 'ag-grid-community';
 import { useDataStoreTypes } from '@/features/dataStore/composables/useDataStoreTypes';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useI18n } from '@n8n/i18n';
 import { isAGGridCellType } from '@/features/dataStore/types';
 
 type HeaderParamsWithDelete = IHeaderParams & {
 	onDelete: (columnId: string) => void;
+	$style: Record<string, string>;
 };
 
 const props = defineProps<{
@@ -41,6 +42,8 @@ const onDropdownVisibleChange = (visible: boolean) => {
 	isDropdownOpen.value = visible;
 };
 
+const $style = computed(() => props.params.$style);
+
 const isDropdownVisible = computed(() => {
 	return isHovered.value || isDropdownOpen.value;
 });
@@ -61,7 +64,7 @@ const typeIcon = computed(() => {
 		@mouseleave="onMouseLeave"
 	>
 		<div class="data-store-column-header-icon-wrapper">
-			<N8nIcon v-if="typeIcon" :icon="typeIcon" />
+			<N8nIcon v-if="typeIcon" :icon="typeIcon" :class="$style['column-header-icon']" />
 			<span class="ag-header-cell-text" data-test-id="data-store-column-header-text">{{
 				props.params.displayName
 			}}</span>
