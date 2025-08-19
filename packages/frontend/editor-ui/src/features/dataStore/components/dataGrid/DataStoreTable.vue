@@ -357,6 +357,6 @@ onMounted(() => {
 }
 
 .column-header-icon {
-	color: var(--color-danger) !important;
+	color: var(--color-danger);
 }
 </style>
