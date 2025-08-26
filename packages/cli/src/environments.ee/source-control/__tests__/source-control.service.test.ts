@@ -1,22 +1,16 @@
 import type { SourceControlledFile } from '@n8n/api-types';
-import {
-	type User,
-	type WorkflowEntity,
-	GLOBAL_MEMBER_ROLE,
-	GLOBAL_ADMIN_ROLE,
-} from '@n8n/db';
+import { type User, type WorkflowEntity, GLOBAL_MEMBER_ROLE, GLOBAL_ADMIN_ROLE } from '@n8n/db';
 import { Container } from '@n8n/di';
 import { mock } from 'jest-mock-extended';
 import { InstanceSettings } from 'n8n-core';
-
-import type { SourceControlGitService } from '../source-control-git.service.ee';
-import type { SourceControlImportService } from '../source-control-import.service.ee';
-import type { SourceControlScopedService } from '../source-control-scoped.service';
 
 import { SourceControlPreferencesService } from '@/environments.ee/source-control/source-control-preferences.service.ee';
 import { SourceControlService } from '@/environments.ee/source-control/source-control.service.ee';
 import { ForbiddenError } from '@/errors/response-errors/forbidden.error';
 
+import type { SourceControlGitService } from '../source-control-git.service.ee';
+import type { SourceControlImportService } from '../source-control-import.service.ee';
+import type { SourceControlScopedService } from '../source-control-scoped.service';
 
 // Mock the status service to avoid complex dependency issues
 const mockStatusService = {
